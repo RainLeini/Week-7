@@ -4,9 +4,9 @@ const moviePosterUrl = document.querySelector(".userInputPosterUrl");
 const movieYear = document.querySelector(".year");
 const button = document.querySelector(".button");
 const movieTitleToDisplay = document.querySelector(".favouriteMovieTitle");
-const movieYearToDisplay = document.querySelector(".movieYear"); // Match the correct class
+const movieYearToDisplay = document.querySelector(".MovieYear");
 
-// Retrieve stored data
+
 let titleInStorage = localStorage.getItem('title');
 let imageUrlInStorage = localStorage.getItem('imageUrl');
 let yearInStorage = localStorage.getItem("year");
@@ -20,10 +20,10 @@ if (imageUrlInStorage) {
 }
 
 if (yearInStorage) {
-    movieYearToDisplay.textContent = `Year: ${yearInStorage}`;
+    movieYearToDisplay.textContent = yearInStorage;
 }
 
-// Add event listener to button
+
 button.addEventListener("click", () => {
     let movieTitleInput = movieTitle.value.trim();
     let posterUrlInput = moviePosterUrl.value.trim();
@@ -40,11 +40,11 @@ button.addEventListener("click", () => {
     }
 
     if (movieYearInput) {
-        movieYearToDisplay.textContent = `Year: ${movieYearInput}`;
+        movieYearToDisplay.textContent = movieYearInput;
         localStorage.setItem("year", movieYearInput);
     }
 
-    // Clear input fields
+    
     movieTitle.value = '';
     moviePosterUrl.value = '';
     movieYear.value = '';
