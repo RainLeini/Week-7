@@ -1,38 +1,51 @@
 const container = document.querySelector('.container');
 const movieTitle = document.querySelector(".userInputTitle");
-const MoviePosterUrl = document.querySelector(".userInputPosterUrl");
-const button = document.querySelector("button");
+const moviePosterUrl = document.querySelector(".userInputPosterUrl");
+const movieYear = document.querySelector(".year");
+const button = document.querySelector(".button");
 const movieTitleToDisplay = document.querySelector(".favouriteMovieTitle");
+const movieYearToDisplay = document.querySelector(".movieYear"); // Match the correct class
 
+// Retrieve stored data
 let titleInStorage = localStorage.getItem('title');
 let imageUrlInStorage = localStorage.getItem('imageUrl');
+let yearInStorage = localStorage.getItem("year");
 
-// Apply stored values if available
 if (titleInStorage) {
     movieTitleToDisplay.textContent = titleInStorage;
 }
 
 if (imageUrlInStorage) {
-    container.style.backgroundImage = `url("${imageUrlInStorage}")`;
+    container.style.backgroundImage = `url(${imageUrlInStorage})`;
 }
 
+if (yearInStorage) {
+    movieYearToDisplay.textContent = `Year: ${yearInStorage}`;
+}
+
+// Add event listener to button
 button.addEventListener("click", () => {
     let movieTitleInput = movieTitle.value.trim();
-    let posterUrlInput = MoviePosterUrl.value.trim();
+    let posterUrlInput = moviePosterUrl.value.trim();
+    let movieYearInput = movieYear.value.trim();
 
-    // Update the background image of the container
     if (posterUrlInput) {
-        container.style.backgroundImage = `url("${posterUrlInput}")`;
+        container.style.backgroundImage = `url(${posterUrlInput})`;
         localStorage.setItem("imageUrl", posterUrlInput);
     }
 
-    // Update the movie title
     if (movieTitleInput) {
         movieTitleToDisplay.textContent = movieTitleInput;
         localStorage.setItem("title", movieTitleInput);
     }
 
-    // Clear the input fields
+    if (movieYearInput) {
+        movieYearToDisplay.textContent = `Year: ${movieYearInput}`;
+        localStorage.setItem("year", movieYearInput);
+    }
+
+    // Clear input fields
     movieTitle.value = '';
-    MoviePosterUrl.value = '';
+    moviePosterUrl.value = '';
+    movieYear.value = '';
 });
